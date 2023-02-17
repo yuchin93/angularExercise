@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { StockService } from 'src/app/services/stock.service';
 import { Stock } from 'src/app/model/stock';
+
 
 @Component({
   selector: 'app-stock-list',
@@ -9,19 +11,14 @@ import { Stock } from 'src/app/model/stock';
 export class StockListComponent {
 
     public stocks: Stock[];
-    constructor() {
-      this.stocks = [
-        new Stock('Test Stock Company', 'TSC', 85, 80, 'NASDAQ'),
-        new Stock('Second Stock Company', 'SSC', 10, 20, 'NSE'),
-        new Stock('Last Stock Company', 'LSC', 876, 765, 'NYSE')
-      ];
+    constructor(private stockService: StockService) {
+      this.stocks = this.stockService.getStocks();
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     onToggleFavorite(stock: Stock){
       console.log('Favorite for stock ', stock, ' was triggered');
-      stock.favorite = !stock.favorite;
+      this.stockService.toggleFavorite(stock);
     }
 }
