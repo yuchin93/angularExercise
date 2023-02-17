@@ -6,7 +6,8 @@ import { StockService } from 'src/app/services/stock.service';
 @Component({
   selector: 'app-create-stock',
   templateUrl: './create-stock.component.html',
-  styleUrls: ['./create-stock.component.css']
+  styleUrls: ['./create-stock.component.css'],
+  providers: [MessageService]
 })
 export class CreateStockComponent {
 
@@ -16,6 +17,7 @@ export class CreateStockComponent {
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
   constructor(private stockService: StockService) {
     this.stock =  new Stock('', '', 0, 0, 'NASDAQ');
+    this.messageService.message = 'Component Level: Hello Message Service';
   }
 
   setStockPrice(price: number) {
