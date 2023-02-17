@@ -19,12 +19,7 @@ import { StockService } from './services/stock.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    StockService,
-    MessageService
+    FormsModule
   ],
   providers: [
     StockService
