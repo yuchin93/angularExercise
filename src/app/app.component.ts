@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,8 @@ import { MessageService } from './services/message.service';
 export class AppComponent {
   title = 'Stock Market App';
 
-  constructor(public messageService: MessageService){ }
+  constructor(){ }
 
   ngOnInit(): void{
-    this.messageService.message = 'Hello Message Service!';
   }
 }
