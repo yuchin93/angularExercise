@@ -16,8 +16,4 @@ export class StockListComponent {
     }
 
     ngOnInit() { }
-
-    onToggleFavorite(stock: Stock){
-      this.stockService.toggleFavorite(stock);
-    }
 }

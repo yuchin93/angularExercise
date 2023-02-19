@@ -10,12 +10,23 @@ import { StockService } from 'src/app/services/stock.service';
 })
 export class CreateStockComponent {
 
-  public stock: Stock;
+  public stock!: Stock;
   public confirmed = false;
   public message = '';
   public exchanges = ['NYSE', 'NASDAQ', 'OTHER'];
   constructor(private stockService: StockService) {
-    this.stock =  new Stock('', '', 0, 0, 'NASDAQ');
+    this.initializeStock();
+  }
+
+  initializeStock(){
+    this.stock = {
+      name:'',
+      code:'',
+      price: 0,
+      previousPrice: 0,
+      exchange: 'NASDAQ',
+      favorite: false
+    };
   }
 
   setStockPrice(price: number) {
@@ -28,7 +39,7 @@ export class CreateStockComponent {
     if (stockForm.valid) {
       this.stockService.createStock(this.stock).subscribe((result: any) => {
         this.message = result.msg;
-        this.stock = new Stock('', '', 0, 0, 'NASDAQ');
+        this.initializeStock();
       }, (err) => {
         this.message = err.msg;
       });
